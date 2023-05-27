@@ -2,15 +2,50 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "sundeeprodricks",
+    "title": "Sundeep Rodricks",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "---\nI’m Sundeep and this is a little website about me."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Projects",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "I consider myself an environmentalist, which is why I’m majoring in Environmental Studies. I love nature, but I feel like my ideal role lies at the intersection of what we own and the interaction that those items have with nature from production to disposal. I just don’t see myself surveying fish in a lake or trees in a forest, but of course I value that work and the people who perform it.\nA project that I undertook over the height of the pandemic was trash picking. It doesn’t sound glamorous, but I had a lot of fun and I felt good doing it. My local waste hauling company has specific days twice a year when they will pick up bulky items that are left on the curb. I was able to find out some of these dates and go to neighborhoods the day before the truck would haul everything away. I found some really interesting and useful items, which I cleaned up and sold or kept for myself.\nIn total I saved over 1800 lbs of what people considered trash from the landfill. I found a lot of bikes that only needed minor repairs. This was disappointing to see, but was beneficial to me since I know how to repair bikes. Bikes were a hot item over the pandemic and I had no problem selling them locally. I priced them low as well, not to take advantage of the shortage that was going on at the time. As the saying goes, one man’s trash is another man’s treasure.\nHere are just a few examples of my findings."
+  },
+  {
+    "objectID": "index.html#hey",
+    "href": "index.html#hey",
+    "title": "Sundeep Rodricks",
+    "section": "",
+    "text": "---\nI’m Sundeep and this is a little website about me."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Sundeep Rodricks",
+    "section": "Education",
+    "text": "Education\n---\nCurrently pursuing a BA in Environmental Studies and a BA in Communication at the University of California, Santa Barbara (2021-Present)\nAA in Liberal Arts (2021)\nDe Anza College, Cupertino CA"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Sundeep Rodricks",
+    "section": "Experience",
+    "text": "Experience\n---\nMarketing Intern (2022-Present)\nDemo 2 Design, Goleta CA\nSupport Associate (2021)\nMacy’s, San Jose CA"
+  },
+  {
+    "objectID": "about.html#projects",
+    "href": "about.html#projects",
+    "title": "Projects",
+    "section": "",
+    "text": "I consider myself an environmentalist, which is why I’m majoring in Environmental Studies. I love nature, but I feel like my ideal role lies at the intersection of what we own and the interaction that those items have with nature from production to disposal. I just don’t see myself surveying fish in a lake or trees in a forest, but of course I value that work and the people who perform it.\nA project that I undertook over the height of the pandemic was trash picking. It doesn’t sound glamorous, but I had a lot of fun and I felt good doing it. My local waste hauling company has specific days twice a year when they will pick up bulky items that are left on the curb. I was able to find out some of these dates and go to neighborhoods the day before the truck would haul everything away. I found some really interesting and useful items, which I cleaned up and sold or kept for myself.\nIn total I saved over 1800 lbs of what people considered trash from the landfill. I found a lot of bikes that only needed minor repairs. This was disappointing to see, but was beneficial to me since I know how to repair bikes. Bikes were a hot item over the pandemic and I had no problem selling them locally. I priced them low as well, not to take advantage of the shortage that was going on at the time. As the saying goes, one man’s trash is another man’s treasure.\nHere are just a few examples of my findings."
+  },
+  {
+    "objectID": "Hobbies.html",
+    "href": "Hobbies.html",
+    "title": "Hobbies",
+    "section": "",
+    "text": "In addition to being an environmentalist, I consider myself an athlete and someone who is interested in the history. I love pole vaulting, collecting license plates (especially vintage CA plates), and vintage clothes."
   }
 ]

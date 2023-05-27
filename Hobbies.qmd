@@ -1,0 +1,12 @@
+---
+title: "Hobbies"
+editor: visual
+---
+
+In addition to being an environmentalist, I consider myself an athlete and someone who is interested in the history. I love pole vaulting, collecting license plates (especially vintage CA plates), and vintage clothes.
+
+```{r echo = FALSE}
+knitr::include_graphics("pv.jpg")
+knitr::include_graphics("licenseplates.jpg")
+knitr::include_graphics("vintageshirt.jpg")
+```

@@ -1,11 +1,41 @@
 ---
-title: "sundeeprodricks"
+title: "Sundeep Rodricks"
+image: sampleheadshot.jpeg
+about:
+  template: jolla
+  image-shape: round
+  image-width: 23em
+  links:
+  - text: GitHub
+    href: https://github.com/sun-rod
+  - text: Email
+    href: mailto::sundeep@ucsb.edu
 ---
 
-This is a Quarto website.
+## Hey!
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+\-\--
 
-```{r}
-1 + 1
-```
+I'm Sundeep and this is a little website about me.
+
+## Education
+
+\-\--
+
+Currently pursuing a BA in Environmental Studies and a BA in Communication at the University of California, Santa Barbara (2021-Present)
+
+**AA in Liberal Arts** (2021)
+
+De Anza College, Cupertino CA
+
+## Experience
+
+\-\--
+
+**Marketing Intern** (2022-Present)
+
+[Demo 2 Design](http://demo2design.com/index_1.html), Goleta CA
+
+**Support Associate** (2021)
+
+Macy's, San Jose CA

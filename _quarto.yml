@@ -3,18 +3,22 @@ project:
   output-dir: docs
 
 website:
-  title: "sundeeprodricks"
+  title: "Sundeep Rodricks"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+      - Hobbies.qmd
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: minty
+      dark: solar
     css: styles.css
     toc: true
+    page-layout: full
 
 editor: visual
 
