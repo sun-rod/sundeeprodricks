@@ -16,7 +16,6 @@ format:
     theme:
       - mystyles.scss
     mainfont: Quicksand
-    css: styles.css
     toc: true
     page-layout: full
 
