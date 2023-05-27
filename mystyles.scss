@@ -1,0 +1,28 @@
+/*-- scss:defaults --*/
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+// Colors
+$light-blue: #8FDDFA;
+$dark-sage-green: #98A08D;
+$teal: #B3DFE0;
+$gray: #64605f;
+$light-gray: #949799;
+$purple: #AE8BD1;
+
+// Base document colors
+$navbar-bg: $teal; // navbar
+$navbar-fg: $dark-sage-green; // navbar foreground elements
+$navbar-hl: $purple; // highlight color when hovering over navbar links
+$body-bg: $light-blue; // page background 
+$body-color: $gray; // page text 
+$footer-bg: $teal; // footer 
+$link-color: $purple; // hyperlinks 
+
+// Inline code
+$code-bg: $teal; // inline code background color
+$code-color: $purple; // inline code text color
+
+// Code blocks
+$code-block-bg: $teal; // code block background color

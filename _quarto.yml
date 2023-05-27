@@ -14,8 +14,8 @@ website:
 format:
   html:
     theme:
-      light: minty
-      dark: solar
+      - mystyles.scss
+    mainfont: Quicksand
     css: styles.css
     toc: true
     page-layout: full
