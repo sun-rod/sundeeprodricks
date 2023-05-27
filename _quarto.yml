@@ -14,7 +14,7 @@ website:
 format:
   html:
     theme:
-      - mystyles.scss
+      mystyles.scss
     mainfont: Quicksand
     toc: true
     page-layout: full
