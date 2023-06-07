@@ -1,0 +1,220 @@
+---
+title: "193DS-HW-05"
+author: "Sundeep Rodricks"
+date: "6/6/23"
+format:
+  html: 
+    toc: true
+    toc-location: left
+    code-fold: true
+    theme: yeti 
+execute:
+  message: false
+  warning: false 
+bibliography: references.bib
+link-citations: true
+editor: visual
+---
+
+#### Link to GitHub repo:
+
+[Repository](https://github.com/sun-rod/ENVS-193DS_homework-05)
+
+```{r echo = FALSE}
+library(tidyverse)
+library(here)
+library(janitor)
+library(ggeffects)
+library(performance)
+library(naniar) # or equivalent
+library(flextable) # or equivalent
+library(car)
+library(broom)
+# would be nice to have
+library(corrplot)
+library(AICcmodavg)
+library(GGally)
+library(MuMIn)
+
+```
+
+## Introduction
+
+Sarracenia is a genus of pitcher plants that is found in the southeastern United States [@ellison2004]. These carnivorous plants are particularly sensitive to nitrogen availability, which has been increasing in the atmosphere due to anthropogenic activities [@ellison2002]. A certain species of this plant could be a useful tool to measure nitrogen deposition rates [@ellison2002]. Carnivorous plants need significant leaf area to capture prey, since they get certain nutrients from prey that other plants get in other ways [@farnsworth2007]. This study was interested in the effects of prey availability on maximum mass-based photosynthetic rate, or A~mass~. The hypothesis being tested in this experiment is that "increased prey availability would stimulate A~mass~ of one or more leaves, increase photosynthetic N- and P-use efficiencies (PNUEN, PNUEP), increase relative biomass allocation to photosynthetically efficient, non-predatory phyllodes rather than pitchers, increase overall plant biomass, and reduce stress-related chlorophyll fluorescence." \[[@farnsworth2007].
+
+## Methods
+
+Twelve plants of each species were chosen at random for this experiment, totaling 120 plants that were each 6 years old [@farnsworth2007]. For each plant, the species, total mass, feed level, specific leaf area, chlorophyll A and B content, mass-based photosynthetic rate, total number of leaves, and number of phyllodes were documented. This data was organized into a table with each of these variables having their own column.
+
+Missing observations are as shown in the figure below. These values were removed before analysis was conducted. There aren't that many missing observations.
+
+```{r echo = FALSE}
+plant <- read_csv(here("data", "knb-lter-hfr.109.18","hf109-01-sarracenia.csv")) %>%
+  # make the column names cleaner
+  clean_names() %>% 
+  #selecting the columns of interest
+  select(totmass, species, feedlevel, sla, chlorophyll, amass, num_lvs, num_phylls)
+
+```
+
+```{r missing-data-visualization}
+gg_miss_var(plant) + 
+  labs(caption = "There are 14 missing observations for A_mass and Chlorophyll, while Specific Leaf Area
+       has 10 and Number of Leaves and Number of Phyllodes have 2 each")
+```
+
+Next, we found Pearson's r. To determine the relationships between numerical variables in our dataset, we calculated Pearson's r and visually represented correlation using a correlation plot. Pearson's r represents how strongly variables are correlated with each other. As shown, maximum mass-based photosynthetic rate and specific leaf area are the most positively correlated.
+
+```{r echo=FALSE}
+plant_subset <- plant %>% 
+  drop_na(sla, chlorophyll, amass, num_lvs, num_phylls)
+```
+
+```{r Pearson}
+# calculate Pearson's R 
+plant_cor <- plant_subset %>% 
+  select(feedlevel:num_phylls) %>% 
+  cor(method = "pearson")
+
+# create a correlation plot
+corrplot(plant_cor,
+         #change the shape of what's in the cells 
+        method = "ellipse",
+         addCoef.col = "black")
+        labs(caption = "A visual representation of Pearson's r, which shows the correlation between each variable. A higher positive number indicates a greater positive correlation, while a lower negative number indicates a greater negative correlation")
+  
+```
+
+This is a plot of how the variables relate to the other variables. This correlation matrix shows how correlated each variable is with another variable. This gives us an overview of the correlation of variables.
+
+```{r correlation-matrix}
+plant_subset %>% 
+  select(species:num_phylls) %>% 
+  ggpairs() +
+  labs(caption = "Correlation matrix showing the correlation between all variables")
+```
+
+To determine how species and physiological characteristics predict biomass, we fit multiple linear models
+
+```{r null-and-full-model-creation, echo = FALSE}
+null <- lm(totmass ~ 1, data = plant_subset)
+
+# response varible and all predictors
+full <- lm(totmass ~ species + feedlevel + sla + chlorophyll + amass +num_lvs + num_phylls, data = plant_subset)
+```
+
+This model looks to be homoskedastic and normal based on the residuals vs. fitted plot and Q-Q plot. However, this was not the case as shown in the next test.
+
+```{r full-diagnostics}
+par(mfrow = c(2, 2))
+plot(full)
+```
+
+We used a Shapiro-Wilk test to check for normality and a Breusch-Pagan test for homoskedasticity. This model failed both, necessitating that we transform the data to fit the model. This was done by taking the log of total mass.
+
+```{r assumption-checks}
+check_normality(full)
+check_heteroscedasticity(full)
+```
+
+Here are the plots after transforming the data. According to the Shapiro-Wilk and Breusch-Pagan tests this data is normally distributed and homoskedastic.
+
+```{r log-model, echo=FALSE}
+full_log <- lm(log(totmass) ~ species + feedlevel + sla + chlorophyll + amass + num_lvs + num_phylls, data = plant_subset)
+```
+
+```{r log-plots}
+par(mfrow = c(2, 2))
+plot(full_log)
+check_normality(full_log)
+check_heteroscedasticity(full_log)
+
+```
+
+This is a model showing the relationship between species and total mass. It is homoscedastic and normally distributed. This data could show how total mass varies by species. The difference in total mass could be due to a variation in species.
+
+```{r model2}
+model2_log <- lm(log(totmass) ~ species, data = plant_subset)
+
+par(mfrow = c(2, 2))
+plot(model2_log)
+
+check_normality(model2_log)
+check_heteroscedasticity(model2_log)
+
+```
+
+This model shows the relationship between feed level and total mass. The Shapiro-Wilk test failed, which means that the data is not normally distributed, so we can't run most tests since they assume normality. It would be interesting to see if the amount of food given to the plants could explain the difference in total mass.
+
+```{r model3}
+model3_log <- lm(log(totmass) ~ feedlevel, data = plant_subset)
+
+par(mfrow = c(2, 2))
+plot(model3_log)
+
+check_normality(model3_log)
+check_heteroscedasticity(model3_log)
+
+```
+
+This model shows the relationship of the number of leaves, chlorophyll content, feed level, and species to total mass. It would be useful if we could get an accurate prediction of total mass by using less variables than in the full model.
+
+```{r model4}
+model4_log <- lm(log(totmass) ~ num_lvs + chlorophyll + feedlevel + species, data = plant_subset)
+
+par(mfrow = c(2, 2))
+plot(model4_log)
+
+check_normality(model4_log)
+check_heteroscedasticity(model4_log)
+```
+
+Next, we evaluated multicollinearity. This is to see if multiple independent variables are correlated with each other. Through this evaluation, we found that species has high multicollinearity with another variables. We know this because the variance inflation factor was high for species.
+
+```{r vif}
+car::vif(full_log)
+```
+
+Comparing models: The last model (model 4) has the lowest Akaike's Information criterion value.
+
+```{r model-comparison}
+AICc(full_log)
+AICc(model2_log)
+AICc(model3_log)
+AICc(model4_log)
+
+MuMIn::AICc(full_log, model2_log, model3_log, model4_log)
+MuMIn::model.sel(full_log, model2_log, model3_log, model4_log)
+```
+
+## Results
+
+Model 4 was the best fit for the data because it had the lowest AIC value.
+
+```{r}
+summary(model4_log)
+```
+
+```{r}
+model_pred <- ggpredict(model4_log, terms = "species", back.transform = TRUE)
+
+plot(ggpredict(model4_log, terms = "species", back.transform = TRUE), add.data = TRUE)
+
+model_pred
+```
+
+Model 4 takes into account number of leaves, chlorophyll content, feed level, and species. It shows that these variables are good predictors of the total mass of the sarracenia plants.
+
+```{r predictions}
+table <- tidy(model4_log, conf.int = TRUE) %>% 
+  # change the P-value numbers if they're really small
+  #change the estimates, standard error, and t-statistics
+  # using mutate
+  # make it into a flextable
+  flextable() %>% 
+  # fit it to the viewer
+  autofit()
+```
+
+Biologically this means that the variables in model 4 can be used to predict the total biomass of this particular genus of plants.
+
