@@ -22,7 +22,7 @@ knitr::include_graphics("bianchi.jpg")
 
 ### Cars
 
-I see repair as being very important in the future. It is better for the environment and it can create local jobs along with making people more in touch with the items they own. One of my passions is cars, so combining that with my repair skills, can only lead to me buying broken cars and fixing them. This past summer, my friend and I bought a car together knowing that it needed an engine. We pulled the old engine, pulled a different one from a junkyard car, and installed it in our project car. I make it sound simple, but it was quite a learning experience that involved a lot of problem solving. Here is a picture of the finished product.
+I see repair as being very important in the future. It's better for the environment and it can create local jobs along with making people more in touch with the items they own. One of my passions is cars, so combining that with my repair skills, can only lead to me buying broken cars and fixing them. This past summer, my friend and I bought a car together knowing that it needed an engine. We pulled the old engine, pulled a different one from a junkyard car, and installed it in our project car. I make it sound simple, but it was quite a learning experience that involved a lot of problem solving. Here is a picture of the finished product.
 
 ```{r echo = FALSE}
 knitr::include_graphics("e30.jpg")

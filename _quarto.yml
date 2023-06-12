@@ -10,7 +10,6 @@ website:
         text: Home
       - about.qmd
       - Hobbies.qmd
-      - 193DS-HW-05.qmd
 
 format:
   html:
